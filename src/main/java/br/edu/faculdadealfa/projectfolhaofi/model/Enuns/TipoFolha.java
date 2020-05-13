@@ -1,9 +1,9 @@
 package br.edu.faculdadealfa.projectfolhaofi.model.Enuns;
 
 public enum TipoFolha {
-	SALARIO("SAL�RIO"),
-	FERIAS("F�RIAS"),
-	DECIMOTERCEIRO("D�CIMO TERCEIRO");
+	SALARIO("SALÁRIO"),
+	FERIAS("FÉRIAS"),
+	DECIMOTERCEIRO("DÉCIMO TERCEIRO");
 	
 	private String descricao;
 	 //renomeia o enum

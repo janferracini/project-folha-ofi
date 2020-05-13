@@ -27,7 +27,7 @@ public class Funcionario {
 	@Length(min = 4, max = 100) //qnt máxima e mínima de caracteres
 	private String nome;
 	
-	@CPF(message = "Informe um CPF válido")
+	@CPF(message = "Informe um CPF válido") //também tem CNPJ
 	private String cpf;
 	
 	@NotNull(message = "Informe um salário válido") //validação com mensagem
@@ -35,9 +35,10 @@ public class Funcionario {
 	
 	private String cargo;
 	
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "funcionario") 
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "funcionario") //"funcionario" vem da CLASSE Endereco
 	//se excluir o func, apaga também os endereços relacionados, qual o campo à ser mapeado
 	private List<Endereco> enderecos;
+	//cria uma lista de endereços para o funcionário
 	
 
 	// dois construtores para que n�o precise inserir infos

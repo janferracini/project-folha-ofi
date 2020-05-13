@@ -10,18 +10,16 @@ import org.springframework.web.bind.annotation.RestController;
 import br.edu.faculdadealfa.projectfolhaofi.model.Funcionario;
 import br.edu.faculdadealfa.projectfolhaofi.model.repository.FuncionarioRepository;
 
+// quando faz a anotação controlller, ele vai importar o controller do pacote spring
+// diz que ela quem vai fazer o controle entre a visao e os models
 
-
-// quando faz a anotação controlller, ele vai importar o controller do pacote spring e dizer que ela quem vai fazer
-// o controle entre a visao e os models
-
-@RestController
-@RequestMapping("funcionario") //determina um nome para o end point
+@RestController //requisições rest - classe controladora entre a visão e o modelo
+@RequestMapping("funcionario") //quando chamar o endereço da app, cai nesse controlador
 
 public class FuncionarioController {
 
 	@Autowired
-	FuncionarioRepository repository;
+	FuncionarioRepository repository;  //fala qual classe vai ser o repositório (injeção de dependencia)
 
 	// metodo salvar
 	public Funcionario salvar(Funcionario funcionario) {

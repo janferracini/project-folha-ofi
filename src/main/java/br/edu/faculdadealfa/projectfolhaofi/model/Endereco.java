@@ -9,22 +9,23 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 @Entity
-public class Endereco { //classe que faz ref. a DB
+public class Endereco { // classe que faz ref. a DB
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
-	@Column(name="DESCRICAO_ENDERECO") //infoma a coluna caso já exista a table no DB / usa um nome !=
+
+	@Column(name = "DESCRICAO_ENDERECO") // infoma a coluna caso já exista a table no DB / usa um nome !=
 	private String logradouro;
-	
+
 	private Integer numero;
 	private String cep;
-	
-	@ManyToOne //vários endereços para um funcionário
-	@JoinColumn(name="funcionario_id") //qual coluna vai servir de FK no DB
-	private Funcionario funcionario;  //para vincular à classe Funcionário
 
+	@ManyToOne // vários endereços para um funcionário
+	@JoinColumn(name = "funcionario_id") // qual coluna vai servir de FK no DB
+	private Funcionario funcionario; // para vincular à classe Funcionário
+
+	// alt sft S + R - getter setter
 	public Long getId() {
 		return id;
 	}
@@ -64,6 +65,5 @@ public class Endereco { //classe que faz ref. a DB
 	public void setFuncionario(Funcionario funcionario) {
 		this.funcionario = funcionario;
 	}
-	
 
 }

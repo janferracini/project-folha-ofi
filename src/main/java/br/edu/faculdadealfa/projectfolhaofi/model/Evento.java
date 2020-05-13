@@ -13,8 +13,8 @@ import br.edu.faculdadealfa.projectfolhaofi.model.Enuns.TipoEvento;
 @Entity
 public class Evento {
 		
-	@Id //gerar id novo automaticamente
-	@GeneratedValue( strategy = GenerationType.IDENTITY ) //vê a estratégia do DB
+	@Id 
+	@GeneratedValue( strategy = GenerationType.IDENTITY ) //gerar id novo automaticamente
 	private Long id;
 	
 	private String descricao;

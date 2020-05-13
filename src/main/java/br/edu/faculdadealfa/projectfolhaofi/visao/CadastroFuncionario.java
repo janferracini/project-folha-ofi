@@ -1,4 +1,4 @@
-package br.edu.faculdadealfa.projectfolhaofi.model.funcoes;
+package br.edu.faculdadealfa.projectfolhaofi.visao;
 
 import java.text.DecimalFormat;
 import java.util.Scanner;
@@ -6,6 +6,7 @@ import java.util.Scanner;
 import br.edu.faculdadealfa.projectfolhaofi.model.Funcionario;
 
 public class CadastroFuncionario {
+	
 	public static Funcionario cadastrar(Scanner s) {
 		DecimalFormat df = new DecimalFormat("0.##");
 
