@@ -13,13 +13,13 @@ import br.edu.faculdadealfa.projectfolhaofi.model.repository.FuncionarioReposito
 // quando faz a anotação controlller, ele vai importar o controller do pacote spring
 // diz que ela quem vai fazer o controle entre a visao e os models
 
-@RestController //requisições rest - classe controladora entre a visão e o modelo
-@RequestMapping("funcionario") //quando chamar o endereço da app, cai nesse controlador
+@RestController // requisições rest - classe controladora entre a visão e o modelo
+@RequestMapping("funcionario") // quando chamar o endereço da app, cai nesse controlador
 
 public class FuncionarioController {
 
 	@Autowired
-	FuncionarioRepository repository;  //fala qual classe vai ser o repositório (injeção de dependencia)
+	FuncionarioRepository repository; // fala qual classe vai ser o repositório (injeção de dependencia)
 
 	// metodo salvar
 	public Funcionario salvar(Funcionario funcionario) {
@@ -31,7 +31,8 @@ public class FuncionarioController {
 	public List<Funcionario> listar() {
 		return repository.findAll();
 	}
-	
+
+	// listar apenas um
 	public Funcionario buscarPorId(Long id) {
 		return repository.getOne(id);
 	}

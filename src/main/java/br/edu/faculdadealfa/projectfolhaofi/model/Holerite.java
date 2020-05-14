@@ -1,6 +1,8 @@
 package br.edu.faculdadealfa.projectfolhaofi.model;
+
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -12,28 +14,24 @@ import javax.persistence.OneToMany;
 import br.edu.faculdadealfa.projectfolhaofi.model.Enuns.TipoEvento;
 import br.edu.faculdadealfa.projectfolhaofi.model.Enuns.TipoFolha;
 
-
-
 //CTRL SFT O - importa o que falta
 
 @Entity
 public class Holerite {
-	
-	@Id //gerar id novo automaticamente
-	@GeneratedValue( strategy = GenerationType.IDENTITY ) //vê a estratégia do DB, incrementa id
+
+	@Id // gerar id novo automaticamente
+	@GeneratedValue(strategy = GenerationType.IDENTITY) // vê a estratégia do DB, incrementa id
 	private Long id;
-	
-	@ManyToOne // VERIFICAR AQUI ********************************
-	@JoinColumn(name="funcionario_id")
+
+	@ManyToOne // Vários holerites para um func
+	@JoinColumn(name = "funcionario_id")
 	private Funcionario funcionario;
-	
-	
+
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "holerite")
+	private List<Evento> eventos;
+
 	private TipoFolha tipoFolha;
 	private Integer competencia = 0;
-	
-	@OneToMany // many2many ??
-	private List<Evento> eventos;
-	
 	private Double vencimentos = new Double(0);
 	private Double descontos = new Double(0);
 
@@ -68,11 +66,10 @@ public class Holerite {
 		return (vencimentos - descontos);
 	}
 
-	/*public void setTotal(Double total) {
-		this.total = vencimentos - descontos;
-	}*/
+	/*
+	 * public void setTotal(Double total) { this.total = vencimentos - descontos; }
+	 */
 
-	
 	public Long getId() {
 		return id;
 	}
@@ -122,6 +119,5 @@ public class Holerite {
 		});
 		this.eventos = eventos;
 	}
-
 
 }

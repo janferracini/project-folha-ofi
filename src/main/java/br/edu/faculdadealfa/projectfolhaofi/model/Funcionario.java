@@ -14,32 +14,35 @@ import javax.validation.constraints.NotNull;
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.br.CPF;
 
-
 //mapeamento da tabela do DB
 @Entity
 public class Funcionario {
 
-	@Id //gerar id novo automaticamente
-	@GeneratedValue( strategy = GenerationType.IDENTITY ) //vê a estratégia do DB, incrementa id
+	@Id // gerar id novo automaticamente
+	@GeneratedValue(strategy = GenerationType.IDENTITY) // vê a estratégia do DB, incrementa id
 	private Long id;
-	
-	@NotBlank(message = "Informe o nome") //valida o campo para não estar em branco 
-	@Length(min = 4, max = 100) //qnt máxima e mínima de caracteres
+
+	@NotBlank(message = "Informe o nome") // valida o campo para não estar em branco
+	@Length(min = 4, max = 100) // qnt máxima e mínima de caracteres
 	private String nome;
-	
-	@CPF(message = "Informe um CPF válido") //também tem CNPJ
+
+	@CPF(message = "Informe um CPF válido") // também tem CNPJ
 	private String cpf;
-	
-	@NotNull(message = "Informe um salário válido") //validação com mensagem
+
+	@NotNull(message = "Informe um salário válido") // validação com mensagem
 	private Double salarioBase;
+
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "funcionario") // "funcionario" vem da CLASSE Endereco
+	// se excluir o func, apaga também os endereços relacionados, qual o campo à ser
+	// mapeado
+	private List<Endereco> enderecos;
+	// cria uma lista de endereços para o funcionário
+	
+	
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "funcionario")
+	private List<Holerite> holerites;
 	
 	private String cargo;
-	
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "funcionario") //"funcionario" vem da CLASSE Endereco
-	//se excluir o func, apaga também os endereços relacionados, qual o campo à ser mapeado
-	private List<Endereco> enderecos;
-	//cria uma lista de endereços para o funcionário
-	
 
 	// dois construtores para que n�o precise inserir infos
 	public Funcionario() {
@@ -97,6 +100,14 @@ public class Funcionario {
 	public void setCpf(String cpf) {
 		this.cpf = cpf;
 	}
-
 	
+	public List<Holerite> getHolerites() {
+		return holerites;
+	}
+
+	public void setHolerites(List<Holerite> holerites) {
+		this.holerites = holerites;
+	}
+	
+
 }

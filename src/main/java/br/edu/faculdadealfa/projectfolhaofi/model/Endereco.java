@@ -18,12 +18,12 @@ public class Endereco { // classe que faz ref. a DB
 	@Column(name = "DESCRICAO_ENDERECO") // infoma a coluna caso já exista a table no DB / usa um nome !=
 	private String logradouro;
 
-	private Integer numero;
-	private String cep;
-
 	@ManyToOne // vários endereços para um funcionário
 	@JoinColumn(name = "funcionario_id") // qual coluna vai servir de FK no DB
 	private Funcionario funcionario; // para vincular à classe Funcionário
+
+	private Integer numero;
+	private String cep;
 
 	// alt sft S + R - getter setter
 	public Long getId() {
