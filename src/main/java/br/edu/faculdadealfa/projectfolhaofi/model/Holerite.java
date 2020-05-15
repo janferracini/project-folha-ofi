@@ -10,6 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.validation.constraints.NotNull;
 
 import br.edu.faculdadealfa.projectfolhaofi.model.Enuns.TipoEvento;
 import br.edu.faculdadealfa.projectfolhaofi.model.Enuns.TipoFolha;
@@ -26,13 +27,20 @@ public class Holerite {
 	@ManyToOne // Vários holerites para um func
 	@JoinColumn(name = "funcionario_id")
 	private Funcionario funcionario;
-
+	
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "holerite")
 	private List<Evento> eventos;
-
-	private TipoFolha tipoFolha;
+	
+	@NotNull
+	private TipoFolha tipoFolha; //o banco salva o index do Enum
+	
+	@NotNull
 	private Integer competencia = 0;
+	
+	@NotNull
 	private Double vencimentos = new Double(0);
+	
+	@NotNull
 	private Double descontos = new Double(0);
 
 	public Holerite(Long id, Funcionario funcionario, TipoFolha tipoFolha, Integer competencia) {
