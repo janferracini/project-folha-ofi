@@ -1,16 +1,12 @@
 package br.edu.faculdadealfa.projectfolhaofi.visao;
 
-import java.text.DecimalFormat;
-import java.util.Scanner;
-
 import br.edu.faculdadealfa.projectfolhaofi.controller.FuncionarioController;
-import br.edu.faculdadealfa.projectfolhaofi.model.Funcionario;
 
 public class Principal {
 
 	public void principalRun(FuncionarioController controle) {
 
-		DecimalFormat df = new DecimalFormat("0.##");
+	/*	DecimalFormat df = new DecimalFormat("0.##");
 		Scanner s = new Scanner(System.in);
 		//List<Funcionario> funcionarios = new ArrayList<>();
 		int opcao = 0;
@@ -100,5 +96,6 @@ public class Principal {
 			}
 		} while (opcao != 3);
 		s.close(); // encerra o objeto scanner
+	*/
 	}
 }

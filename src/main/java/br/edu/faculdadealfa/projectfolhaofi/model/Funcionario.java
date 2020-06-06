@@ -1,5 +1,6 @@
 package br.edu.faculdadealfa.projectfolhaofi.model;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -14,9 +15,11 @@ import javax.validation.constraints.NotNull;
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.br.CPF;
 
+import br.edu.faculdadealfa.projectfolhaofi.controller.dto.FuncionarioDto;
+
 //mapeamento da tabela do DB
 @Entity
-public class Funcionario {
+public class Funcionario extends TemplateTable {
 
 	@Id // gerar id novo automaticamente
 	@GeneratedValue(strategy = GenerationType.IDENTITY) // vê a estratégia do DB, incrementa id
@@ -26,10 +29,11 @@ public class Funcionario {
 	@Length(min = 4, max = 100) // qnt máxima e mínima de caracteres
 	private String nome;
 
+	@NotNull(message= "Informe um CPF")
 	@CPF(message = "Informe um CPF válido") // também tem CNPJ
 	private String cpf;
 
-	@NotNull(message = "Informe um salário válido") // validação com mensagem
+	@NotNull(message = "Informe o salário") // validação com mensagem
 	private Double salarioBase;
 
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "funcionario") // "funcionario" vem da CLASSE Endereco
@@ -47,6 +51,21 @@ public class Funcionario {
 	// dois construtores para que n�o precise inserir infos
 	public Funcionario() {
 
+	}
+	
+	public Funcionario(FuncionarioDto dto) {
+		this.nome = dto.getNome();
+		this.cpf = dto.getCpf();
+		this.salarioBase = dto.getSalarioBase();
+		
+		this.setCodigoUsuario(dto.getCodigoUsuario());
+		this.setDataAlteracao(LocalDateTime.now());
+	}
+	
+
+	public Funcionario(String nome, Double salarioBase) {
+		this.nome = nome;
+		this.salarioBase = salarioBase;
 	}
 
 	public Funcionario(Long id) {
@@ -108,6 +127,7 @@ public class Funcionario {
 	public void setHolerites(List<Holerite> holerites) {
 		this.holerites = holerites;
 	}
+
 	
 
 }
